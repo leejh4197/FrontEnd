@@ -22,7 +22,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/signin" element={<SignUp />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/mypage" element={<MyPage />} />
         {/* 본문 네비게이션바 */}
         <Route element={<Nav />}>
