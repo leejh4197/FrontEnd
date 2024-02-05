@@ -29,13 +29,13 @@ const SignUp = () => {
   const debounceBaby = useDebounce(baby, 300);
 
   // 정규식
-  const nameRegex = /^[가-힣]{1,3}$/;
+  const nameRegex = /^[가-힣]{3,4}$/;
   const birthRegex =
     /^(19\d{2}|20[0-1]\d)\.(0[1-9]|1[0-2])\.(0[1-9]|[12]\d|3[01])$/;
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   const passwordRegex = /^(?=.*[A-Z]).{6,}$/;
-  const phoneNumberRegex = /^\d{3}-\d{4}-\d{4}$/;
 
+  const phoneNumberRegex = /^010-\d{4}-\d{4}$/;
   // 유효성검사
   const isValidName = nameRegex.test(debounceName);
   const isValidBirth = birthRegex.test(debounceBirth);
@@ -46,26 +46,37 @@ const SignUp = () => {
     isValidPassword && debouncePasswordConfirm === debouncePassword
       ? true
       : false;
+
   // 입력값 change함수
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name } = e.target;
-    const { value } = e.target;
-    if (name === "name") {
-      setName(value);
-    } else if (name === "birth") {
-      setBirth(value);
-    } else if (name === "email") {
-      setEmail(value);
-    } else if (name === "password") {
-      setPassword(value);
-    } else if (name === "passwordconfirm") {
-      setPasswordConfirm(value);
-    } else if (name === "phone") {
-      setPhone(value);
-    } else if (name === "family") {
-      setFamily(value);
-    } else if (name === "baby") {
-      setBaby(value);
+    const { name, value } = e.target;
+    switch (name) {
+      case "name":
+        setName(value);
+        break;
+      case "birth":
+        setBirth(value);
+        break;
+      case "email":
+        setEmail(value);
+        break;
+      case "password":
+        setPassword(value);
+        break;
+      case "passwordconfirm":
+        setPasswordConfirm(value);
+        break;
+      case "phone":
+        setPhone(value);
+        break;
+      case "family":
+        setFamily(value);
+        break;
+      case "baby":
+        setBaby(value);
+        break;
+      default:
+        break;
     }
   };
 
@@ -80,6 +91,7 @@ const SignUp = () => {
           <h2>필수항목입력</h2>
           <div className="relative flex justify-center items-center">
             <SignUpInput
+              value=""
               name="name"
               title="이름"
               placeholder="이름"
@@ -90,51 +102,49 @@ const SignUp = () => {
           <div className="flex justify-between items-center pl-16 w-full">
             <div>성별</div>
             <div className="flex justify-between w-3/4 border border-main-color rounded-full py-3 pl-7 pr-16 mb-[5px]">
-              <label>
-                <input
-                  type="radio"
-                  name="group1"
-                  value="남"
-                  onChange={handleRadioChange}
-                />
-                남
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="group1"
-                  value="여"
-                  onChange={handleRadioChange}
-                />
-                여
-              </label>
+              {["남", "여"].map((option) => (
+                <label key={option}>
+                  <input
+                    type="radio"
+                    name="gender"
+                    value={option}
+                    onChange={handleRadioChange}
+                  />
+                  {option}
+                </label>
+              ))}
             </div>
           </div>
           <SignUpInput
+            value=""
             name="birth"
             title="생년월일"
             placeholder="YYYY.MM.DD"
             onChange={handleInputChange}
           />
           <SignUpInput
+            value=""
             name="email"
             title="이메일"
             placeholder="uriel@naver.com"
             onChange={handleInputChange}
           />
           <SignUpInput
+            value=""
             name="password"
             title="비밀번호"
             placeholder="6자리이상 대문자 1개이상 포함"
             onChange={handleInputChange}
           />
           <SignUpInput
+            value=""
             name="passwordconfirm"
             title="비밀번호확인"
             placeholder=""
             onChange={handleInputChange}
           />
           <SignUpInput
+            value={phone}
             name="phone"
             title="핸드폰번호"
             placeholder="010-1234-5678"
@@ -145,12 +155,14 @@ const SignUp = () => {
           <h2>선택입력항목</h2>
           <div className="">
             <SignUpInput
+              value=""
               name="family"
               title="가족인원"
               placeholder="0"
               onChange={handleInputChange}
             />
             <SignUpInput
+              value=""
               name="baby"
               title="자녀대표이름"
               placeholder="애기이름"

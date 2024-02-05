@@ -5,7 +5,6 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import SideNav from "./components/common/SideNav";
 import MainManager from "./pages/manager/MainManager";
-import Manager from "./pages/manager/Manager";
 import OrderManager from "./pages/manager/OrderManager";
 import PackageManager from "./pages/manager/PackageManager";
 import ProductManager from "./pages/manager/ProductManager";
@@ -35,11 +34,10 @@ function App() {
         </Route>
         {/* 관리자 네비게이션바 */}
         <Route element={<SideNav />}>
-          <Route path="/manager" element={<Manager />} />
           <Route path="/mainmanager" element={<MainManager />} />
-          <Route path="/ordermanager" element={<OrderManager />} />
           <Route path="/packagemanager" element={<PackageManager />} />
           <Route path="/productmanager" element={<ProductManager />} />
+          <Route path="/ordermanager" element={<OrderManager />} />
         </Route>
       </Routes>
     </div>
