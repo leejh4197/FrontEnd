@@ -15,7 +15,7 @@ const SideNav = () => {
   };
   return (
     <div className="w-full flex h-full">
-      <div className="flex flex-col p-10 border-r h-full border-main-color">
+      <div className="h-full flex flex-col p-10 border-r border-main-color mr-20">
         {managerNavOption.map((el, index) => {
           return (
             <button

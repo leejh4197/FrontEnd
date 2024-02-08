@@ -91,7 +91,7 @@ const SignUp = () => {
           <h2>필수항목입력</h2>
           <div className="relative flex justify-center items-center">
             <SignUpInput
-              value=""
+              value={name}
               name="name"
               title="이름"
               placeholder="이름"
@@ -116,28 +116,28 @@ const SignUp = () => {
             </div>
           </div>
           <SignUpInput
-            value=""
+            value={birth}
             name="birth"
             title="생년월일"
             placeholder="YYYY.MM.DD"
             onChange={handleInputChange}
           />
           <SignUpInput
-            value=""
+            value={email}
             name="email"
             title="이메일"
             placeholder="uriel@naver.com"
             onChange={handleInputChange}
           />
           <SignUpInput
-            value=""
+            value={password}
             name="password"
             title="비밀번호"
             placeholder="6자리이상 대문자 1개이상 포함"
             onChange={handleInputChange}
           />
           <SignUpInput
-            value=""
+            value={passwordConfirm}
             name="passwordconfirm"
             title="비밀번호확인"
             placeholder=""
@@ -155,14 +155,14 @@ const SignUp = () => {
           <h2>선택입력항목</h2>
           <div className="">
             <SignUpInput
-              value=""
+              value={family}
               name="family"
               title="가족인원"
               placeholder="0"
               onChange={handleInputChange}
             />
             <SignUpInput
-              value=""
+              value={baby}
               name="baby"
               title="자녀대표이름"
               placeholder="애기이름"

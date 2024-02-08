@@ -15,6 +15,7 @@ import TravelProduct from "./pages/TravelProduct";
 import Reservation from "./pages/Reservation";
 import Intro from "./pages/Intro";
 import MyPage from "./pages/MyPage";
+import NewRegistration from "./pages/manager/NewRegistration";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="/packagemanager" element={<PackageManager />} />
           <Route path="/productmanager" element={<ProductManager />} />
           <Route path="/ordermanager" element={<OrderManager />} />
+          <Route path="/newregistration" element={<NewRegistration />} />
         </Route>
       </Routes>
     </div>
