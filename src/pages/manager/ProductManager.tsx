@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { productHeaders, productItems } from "../../constants/data";
-import Pagination from "../../components/common/Pagination";
+// import Pagination from "../../components/common/Pagination";
 import CustomDatePicker from "../../components/common/CustomDatePicker";
+import { useNavigate } from "react-router-dom";
 
 interface ProductItem {
   key: number;
@@ -17,13 +18,7 @@ interface ProductItem {
 }
 
 const ProductManager = () => {
-  // const handleToggleAll = () => {
-  //   if (selectedItems.length === packageItems.length) {
-  //     setSelectedItems([]);
-  //   } else {
-  //     setSelectedItems(packageItems.map((item) => item.key));
-  //   }
-  // };
+  const navagation = useNavigate();
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
   const handleToggleAll = () => {
@@ -85,16 +80,25 @@ const ProductManager = () => {
           출시 일시
         </div>
         <div className="w-full">
-          <div className="border-b w-full">
-            <button>하루</button>
-            <button>일주일</button>
-            <button>1달 이내</button>
+          <div className="border-b w-full flex items-center py-3">
+            {["하루", "일주일", "1달이내"].map((el, index) => {
+              return (
+                <button className="border border-black px-5 ml-5" key={index}>
+                  {el}
+                </button>
+              );
+            })}
           </div>
-          <div>
-            <CustomDatePicker />
+          <div className="flex">
+            <CustomDatePicker className="mx-5" />
+            <span>~</span>
+            <CustomDatePicker className="ml-5" />
           </div>
         </div>
       </div>
+      <button className="flex w-full justify-center items-center">
+        <span className="w-20 border mt-2 mb-5">검색하기</span>
+      </button>
 
       <>
         <table className="table-auto w-full border-collapse border border-black">
@@ -142,9 +146,15 @@ const ProductManager = () => {
             ))}
           </tbody>
         </table>
-        <Pagination />
+        {/* <Pagination /> */}
         <div>
-          <button>신규등록</button>
+          <button
+            onClick={() => {
+              navagation("/productdetail");
+            }}
+          >
+            신규등록
+          </button>
           <button>복사</button>
           <button>삭제</button>
         </div>
